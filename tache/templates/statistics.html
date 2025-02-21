@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques et Évaluation</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Statistiques des Tâches</h1>
+    <h2>Statistiques trimestrielles</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Tâches Complétées</th>
+                <th>Tâches Totales</th>
+                <th>Prime</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat in quarterly_stats %}
+                <tr>
+                    <td>{{ stat.user }}</td>
+                    <td>{{ stat.tasks_completed }}</td>
+                    <td>{{ stat.total_tasks }}</td>
+                    <td>{{ primes[stat.user] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Statistiques annuelles</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Tâches Complétées</th>
+                <th>Tâches Totales</th>
+                <th>Prime</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat in yearly_stats %}
+                <tr>
+                    <td>{{ stat.user }}</td>
+                    <td>{{ stat.tasks_completed }}</td>
+                    <td>{{ stat.total_tasks }}</td>
+                    <td>{{ primes[stat.user] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{% url 'project_list' %}">Retour à la liste des projets</a>
+</body>
+</html>
